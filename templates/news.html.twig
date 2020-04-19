@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} pas welcome {% endblock %}
+    {% block stylesheets %}{{ parent() }}{% endblock %}
+    {% block javascripts %} {{ parent() }} {% endblock %}
+{% block body %}
+    {{ parent() }}
+    <ul class="list-group">
+        <li class="list-group-item">
+        {{ p }}
+        <li class="list-group-item">
+        {{ c.nom }}
+        <li class="list-group-item">
+        {{ c.description }}
+
+
+    </ul>
+    <table class="table table-dark">
+        {% for ligne in t %}
+            <tr>
+            {% for case in ligne %}
+                <td>{{ case }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
+

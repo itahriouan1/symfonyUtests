@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% block body %}<h1>twig</h1>
+{% include 'menu.html.twig' %}
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
