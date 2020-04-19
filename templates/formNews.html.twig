@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} pas welcome {% endblock %}
+    {% block stylesheets %}{{ parent() }}{% endblock %}
+    {% block javascripts %} {{ parent() }} {% endblock %}
+{% block body %}
+    {{ parent() }}
+    {{ form_start(formNews) }}
+    {{ form_row(formNews.titre) }}
+    {{ form_row(formNews.description) }}
+    <button>Register</button>
+    {{ form_end(formNews.description) }}
+{% endblock %}
