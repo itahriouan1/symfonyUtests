@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} pas welcome {% endblock %}
+    {% block stylesheets %}{{ parent() }}{% endblock %}
+    {% block javascripts %} {{ parent() }} {% endblock %}
+{% block body %}
+    {{ parent() }}
+
+    <table>
+        <tr>
+            <td>{{ News.titre }}</td>
+        </tr>
+        <tr>
+            <td>{{ News.description }}</td>
+        </tr>
+    </table>
+        {{ form_start(Comment_form) }}
+        {{ form_row(Comment_form.text) }}
+        {{ form_row(Comment_form.save) }}
+        {{ form_end(Comment_form) }}
+
+{% endblock %}
