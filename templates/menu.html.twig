@@ -7,7 +7,12 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href={{ path('index') }}>index</a>
-            <a class="nav-item nav-link" href={{ path('news', {p:5}) }}>news</a>
+            <a class="nav-item nav-link" href={{ path('news', {p:5}) }}>Afficher news</a>
+            <a class="nav-item nav-link" href={{ path('newsForm') }}>insérer news</a>
+            <a class="nav-item nav-link" href={{ path('Comment', {id:5}) }}>Comment news</a>
+            <a class="nav-item nav-link" href={{ path('newsAdmin') }}>Admin news</a>
+
+
         </div>
     </div>
 </nav>

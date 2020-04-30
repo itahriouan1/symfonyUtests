@@ -48,4 +48,23 @@ class NewsController extends AbstractController
         }
         return $this->render('formNews.html.twig', ['formNews' =>$form->createView()]);
     }
+    /**
+     * @Route("/newsAdmin", name="newsAdmin")
+     * @return Response
+     */
+    public function newsAdminAction(){
+        $news=$this->getDoctrine()->getRepository(News::class)->findAll();
+        return $this->render('newsAdmin.html.twig', ['news'=>$news]);
+    }
+    /**
+     * @Route("/DeleteNews={id}", name="DeleteNews")
+     * @return Response
+     */
+    public function deleteNewsAction($id){
+        $news=$this->getDoctrine()->getRepository(News::class)->find($id);
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($news);
+        $em->flush();
+        return $this->json(['deleting'=> true]);
+    }
 }

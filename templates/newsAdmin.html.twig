@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} pas welcome {% endblock %}
+    {% block stylesheets %}{{ parent() }}{% endblock %}
+    {% block javascripts %} {{ parent() }} {% endblock %}
+{% block body %}
+    {{ parent() }}
+
+
+    <script src="{{ asset('ajax/News.js') }}"></script>
+    <table class="table table-dark">
+        {% for new in news %}
+
+            <tr id="news{{ new.id }}">
+                <td>{{ new.titre }}</td>
+                <td>{{ new.description }}</td>
+                <td><a href="#" onclick="deleteNews({{ new.id }})" >supprimer</a></td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+{% endblock %}
+
