@@ -6,6 +6,10 @@ namespace App\Controller;
 use App\Entity\News;
 use App\Form\NewsType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Button;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,4 +71,36 @@ class NewsController extends AbstractController
         $em->flush();
         return $this->json(['deleting'=> true]);
     }
+    /**
+     * @Route("/ModifyNews={id}&action={action}", name="ModifyNews")
+     * @return Response
+     */
+    public function modifyNewsAction($id, $action, Request $request){
+        $news=$this->getDoctrine()->getRepository(News::class)->find($id);
+
+        if($action=='modify') {
+            return $this->json(['form' => $this->renderView('formModifNews.html.twig', ['id' => $id, 'news'=>$news])]);
+        }
+        if($action=='save') {
+
+
+            $em=$this->getDoctrine()->getManager();
+            $news->setTitre($_POST['titre']);
+            $news->setDescription($_POST['description']);
+            $em->persist($news);
+            $em->flush();
+
+            return $this->json([
+                'form'=> '<td>'.$request->request->get('titre').'</td>
+                    <td>'.$request->request->get('description').'</td>
+                    <td><a href="#" onclick="modifyNews('.$news->getId().')" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                    <td><a href="#" onclick="deleteNews('.$news->getId().')" >supprimer</a></td>'
+            ]);
+
+
+        }
+    }
+
+
+
 }

@@ -1,5 +1,7 @@
 
-    {{ form_start(formNews) }}
-    {{ form_row(formNews.titre) }}
-    {{ form_row(formNews.description) }}
-    {{ form_end(formNews) }}
+
+    <td><input type="text" id="titre{{ id }}" value="{{ news.titre }}"></td>
+    <td><textarea id="description{{ id }}" >{{ news.description }}</textarea></td>
+    <td><button onclick="saveModificationNews({{id}})">save</button> </td>
+
+
